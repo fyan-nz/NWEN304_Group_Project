@@ -16,3 +16,5 @@ Lauching Server:
 first you need to cd into the server folder
 in the terminal type: npm run dev
 this will lauch the react app and the express server at the same time.
+
+To see whats on the express server, it is currently set up to view on http://localhost:5000
