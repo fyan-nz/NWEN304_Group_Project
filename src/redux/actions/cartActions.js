@@ -24,6 +24,7 @@ export function removeItem(item) {
 
 export function removeAll() {
     return {
-        type: REMOVE_ALL
+        type: REMOVE_ALL,
+        item: null
     }
 }

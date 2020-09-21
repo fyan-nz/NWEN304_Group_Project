@@ -3,23 +3,31 @@
  */
 import { ADD_ITEM, REMOVE_ITEM, REMOVE_ALL } from '../actions/cartActions';
 
-export default function cartState(state = [], action) {
+let defaultState = [];
+// check if there are any cached cart items
+const cachedCartItems = localStorage.getItem('cart');
+
+if (cachedCartItems) {
+    // set the default state to include those cart items
+    defaultState = JSON.parse(cachedCartItems);
+}
+
+export default function cartState(state = defaultState, action) {
     switch (action.type) {
         case ADD_ITEM:
             state = [...state, action.item]
-            return state;
+            break
         case REMOVE_ITEM:
-            for (let i = 0; i < state.length; i++) {
-                if (state[i].id === action.item.id) {
-                    state.splice(i, 1);
-                    return state;
-                }
-            }
+            state = state.filter(item => item.id !== action.item.id);
             break;
         case REMOVE_ALL:
             state = [];
-            return state;
+            break;
         default:
-            return state;
+            break;
     }
+
+    // update the current cache with the new state
+    localStorage.setItem('cart', JSON.stringify(state));
+    return state;
 }

@@ -1,0 +1,8 @@
+.navbar .toast {
+    position: absolute;
+    width: max-content;
+    top: 100%;
+    right: 3rem;
+    padding: 10px;
+    z-index: 1;
+}
