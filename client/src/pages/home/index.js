@@ -62,7 +62,15 @@ export default function Home() {
 
             <Swiper
                 className='mb-5'
-                slidesPerView={5}
+                slidesPerView={1}
+                breakpoints={{
+                    480: {
+                        slidesPerView: 3
+                    },
+                    850: {
+                        slidesPerView: 5
+                    }
+                }}
                 spaceBetween={50}
                 navigation={{
                     nextEl: '.swiper-button-next',
@@ -107,7 +115,7 @@ export default function Home() {
                     </Col>
                 </Row>
 
-                <Row>
+                <Row xs={1} md={2}>
                     <Col className='img-container half-height socks-col' to='/products/socks' as={NavLink}>
                         <h4>Socks</h4>
                     </Col>

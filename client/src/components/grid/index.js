@@ -8,9 +8,9 @@ export default function Grid(props) {
      */
     const getGridItems = () => {
         const gridItems = [];
-        for (let i = 0; i < props.products.length; i += 5) {
+        for (let i = 0; i < props.products.length; i += 4) {
             gridItems.push(
-                <Row className="mb-5" lg={5} md={2} xs={1} key={props.products[i]._id}>
+                <Row className="mb-5" lg={4} md={2} xs={1} key={props.products[i]._id}>
                     <Col>
                         <GridItem item={props.products[i]} />
                     </Col>
@@ -28,11 +28,6 @@ export default function Grid(props) {
                     {(i + 3 < props.products.length) &&
                         <Col>
                             <GridItem item={props.products[i + 3]} />
-                        </Col>
-                    }
-                    {(i + 4 < props.products.length) &&
-                        <Col>
-                            <GridItem item={props.products[i + 4]} />
                         </Col>
                     }
                 </Row>
