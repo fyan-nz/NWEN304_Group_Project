@@ -11,7 +11,7 @@ const dbUrl = require('./res/config/dbConfig');
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 // make sure that the connection has been established
-mongoose.connection.once(('open'), async () => {
+mongoose.connection.once(('open'), () => {
   console.log('connected to the database!');
 });
 
@@ -24,39 +24,39 @@ app.get('/', (req, res) => {
   ]
   res.json(test);
 })
-app.get('/products', async (req, res) => {
+app.get('/api/products', async (req, res) => {
   const products = await ProductQueries.getRandomProducts(10);
   res.json(products);
 })
-app.get('/tshirts', async (req, res) => {
+app.get('/api/t-shirts', async (req, res) => {
   const tshirts = await ProductQueries.getAllTShirts();
-  res.json({ tshirts });
+  res.json(tshirts);
 })
-app.get('/pants', async (req, res) => {
+app.get('/api/pants', async (req, res) => {
   const pants = await ProductQueries.getAllPants();
-  res.json({ pants });
+  res.json(pants);
 })
-app.get('/hoodies', async (req, res) => {
+app.get('/api/hoodies', async (req, res) => {
   const hoodies = await ProductQueries.getAllHoodies();
-  res.json({ hoodies });
+  res.json(hoodies);
 })
-app.get('/suits', async (req, res) => {
+app.get('/api/suits', async (req, res) => {
   const suits = await ProductQueries.getAllSuits();
-  res.json({ suits });
+  res.json(suits);
 })
-app.get('/underwear', async (req, res) => {
+app.get('/api/underwear', async (req, res) => {
   const underwear = await ProductQueries.getAllUnderwear();
-  res.json({ underwear });
+  res.json(underwear);
 })
-app.get('/socks', async (req, res) => {
+app.get('/api/socks', async (req, res) => {
   const socks = await ProductQueries.getAllSocks();
-  res.json({ socks });
+  res.json(socks);
 })
-app.get('/accessories', async (req, res) => {
+app.get('/api/accessories', async (req, res) => {
   const accessories = await ProductQueries.getAllAccessories();
-  res.json({ accessories });
+  res.json(accessories);
 })
-app.get('/cart', (req, res) => {
+app.get('/api/cart', (req, res) => {
   const test = [
     { id: 2, name: 'test' }
   ]
