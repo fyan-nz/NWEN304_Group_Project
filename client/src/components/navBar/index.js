@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { Navbar, Nav, NavDropdown, Toast } from 'react-bootstrap';
+import { GoogleLogout } from 'react-google-login';
 import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import './styles.css';
 
+import { logout } from '../../redux/actions/authActions';
 import { connect } from 'react-redux';
 
 class Header extends Component {
@@ -86,6 +88,40 @@ class Header extends Component {
         }
     }
 
+    /**
+     * resets the global auth state
+     */
+    removeAuthState() {
+        this.props.dispatch(logout());
+    }
+
+    /**
+     * returns a login button based on whether the user has logged in with their email, or Google account
+     */
+    getLogoutButton() {
+        // return a GoogleLogout as a Nav.Link element if the user is logged in with Google
+        if (this.props.auth.googleId) {
+            return (
+                <GoogleLogout
+                    clientId="571513238390-v4v9lkk9u3n5ul535i8jmjsrodee9h2t.apps.googleusercontent.com"
+                    onLogoutSuccess={() => this.removeAuthState()}
+                    render={renderProps => (
+                        <Nav.Link to="/" as={NavLink}
+                            onClick={() => renderProps.onClick()}>
+                            Logout
+                        </Nav.Link>
+                    )} />
+            )
+        }
+
+        // otherwise return a regular Nav.Link
+        return (
+            <Nav.Link to="/" as={NavLink} onClick={() => this.removeAuthState()}>
+                Logout
+            </Nav.Link>
+        )
+    }
+
     render() {
         return (
             <Navbar {...this.getNavBarProps()} expand="lg">
@@ -103,7 +139,14 @@ class Header extends Component {
                             <NavDropdown.Item to="/products/underwear" as={NavLink}>Underwear</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link to="/cart" as={NavLink}>Cart</Nav.Link>
-                        <Nav.Link to="/login" as={NavLink}>Login</Nav.Link>
+
+                        { /* render either a login or a logout link based on the user's auth state */
+                            !this.props.auth ?
+                                <Nav.Link to="/login" as={NavLink}>Login</Nav.Link>
+                                :
+                                this.getLogoutButton()
+                        }
+
                     </Nav>
                 </Navbar.Collapse>
                 <Toast className="toast" show={this.state.displayToast} delay={3000} onClose={() => this.setState({ displayToast: false })} animation={false} autohide>
