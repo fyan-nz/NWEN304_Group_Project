@@ -68,3 +68,5 @@ app.listen(5000, () => {
     console.log("Listening");
   }
 })
+
+module.exports = { app, mongoose };
