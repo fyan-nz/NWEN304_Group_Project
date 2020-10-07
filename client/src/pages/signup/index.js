@@ -7,7 +7,46 @@ import { Form, Button } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 
+
+//ToDo: when an email already exists, display some messages that says its already in use.
+
 class Signup extends Component {
+
+
+    constructor(props) {
+        super(props);
+
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+  
+
+    handleSubmit(event) {
+        var email = document.getElementById("formBasicEmail").value;
+        var password = document.getElementById("formBasicPassword").value
+        fetch("http://localhost:5000/api/register", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            }),
+            
+        })
+        .then(function(response){
+            if(response.status === 400){
+            console.log("Duplicate Email");
+            }
+        })
+       
+        
+        event.preventDefault();
+        
+    }
+
     render() {
 
         // redirect the client to the landing page if they are already logged in
@@ -17,10 +56,10 @@ class Signup extends Component {
 
         return (
             <div>
-                <Form className='login-form-container'>
+                <Form className='login-form-container' onSubmit={this.handleSubmit} >
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control type="email" placeholder="Enter email"  />
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPassword">
@@ -30,14 +69,14 @@ class Signup extends Component {
 
                     <Form.Group>
                         <Form.Check
-                            type="checkbox"
+                            type="checkbox" 
                             className="mb-2 mr-sm-2"
                             id="inlineFormCheck"
                             label="I agree to the terms & conditions"
                         />
                     </Form.Group>
 
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" type="submit" >
                         Submit
                     </Button>
 
@@ -51,6 +90,7 @@ class Signup extends Component {
         )
     }
 }
+
 
 function mapStateToProps(state) {
     return state;

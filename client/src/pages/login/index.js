@@ -17,6 +17,16 @@ class Login extends Component {
             email: '',
             password: ''
         };
+
+    }
+
+
+    handleSubmit(event) {
+
+
+
+        event.preventDefault();
+
     }
 
     /**
@@ -30,6 +40,37 @@ class Login extends Component {
      * sends the user's inut to the server
      */
     submitForm(e) {
+        //Gets information email and password from the form
+        var email = document.getElementById("formBasicEmail").value;
+        var password = document.getElementById("formBasicPassword").value
+        //sends post request to the express server with the email and password
+        fetch("http://localhost:5000/api/login", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            }),
+
+        })//if the server sends back a 401 error that means the password does not match
+            .then(function (response) {
+                if (response.status === 401) {
+                    alert("email or password is incorrrect")
+                }
+                if(response.status === 200){
+                    console.log("logged in successfully")
+                    //ToDo: On a 200 OK response the page should be redirected to Home 
+                
+                }
+               else{
+                   console.log("error")
+               }
+            })
+            
+
+
         e.preventDefault();
     }
 
@@ -41,7 +82,7 @@ class Login extends Component {
 
         return (
             <div>
-                <Form className='login-form-container'>
+                <Form className='login-form-container' >
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" placeholder="Enter email" onChange={(e) => this.setState({ email: e.target.value })} />

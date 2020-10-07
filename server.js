@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
-
+//Allows express to read json data
+app.use(express.json())
+const authRoute = require('./client/src/auth')
 // allows cross origin resource sharing
 const cors = require('cors');
 app.use(cors());
+//any route coming from auth adds /api to the front 
+app.use('/api', authRoute);
 
 // configure database connection
 const mongoose = require('mongoose');
@@ -16,6 +20,7 @@ mongoose.connection.once(('open'), () => {
 });
 
 const ProductQueries = require('./res/dbQueries/products');
+const bodyParser = require('body-parser');
 
 app.get('/', (req, res) => {
   const test = [
@@ -63,10 +68,13 @@ app.get('/api/cart', (req, res) => {
   res.json(test);
 })
 
+
+
 app.listen(5000, () => {
   {
     console.log("Listening");
   }
 })
+
 
 module.exports = { app, mongoose };
