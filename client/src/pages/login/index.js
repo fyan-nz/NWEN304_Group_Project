@@ -57,7 +57,7 @@ class Login extends Component {
         })//if the server sends back a 401 error that means the password does not match
             .then(function (response) {
                 if (response.status === 401) {
-                    alert("email or password is incorrrect")
+                    alert("email or password is incorrect")
                 }
                 if(response.status === 200){
                     console.log("logged in successfully")

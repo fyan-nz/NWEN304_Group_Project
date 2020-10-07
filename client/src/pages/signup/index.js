@@ -40,6 +40,9 @@ class Signup extends Component {
             if(response.status === 400){
             console.log("Duplicate Email");
             }
+            if (response.status === 401) {
+                alert("Duplicate Email")
+            }
         })
        
         

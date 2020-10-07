@@ -5,6 +5,11 @@ const User = require('./User')
 
 //POST Route for registration
 router.post('/register', async (req, res) => {
+    let email_exist = await User.findOne({email: req.body.email}, function (error, c) {
+        if (error) {
+            console.log(error);
+        }
+    });
     //creates a random salt that is used by bcrypt to hash the password
     const salt = await bcrypt.genSalt();
     //creates a hashed password from the password and the salt
@@ -16,14 +21,19 @@ router.post('/register', async (req, res) => {
 
     });
     try {
-        //saves newly created user to the database using the email provided and the hashed password
-        const savedUser = await user.save();
-        res.send({
-            email: req.body.email,
-            password: hashedPassword,
-
-        });
-    } catch (err) {
+        //check if email exist
+        if (email_exist) {
+            res.status(401).send("email already registered");
+        } else {
+            //saves newly created user to the database using the email provided and the hashed password
+            const savedUser = await user.save();
+            res.send({
+                email: req.body.email,
+                password: hashedPassword,
+            });
+        }
+    } catch
+        (err) {
         res.status(400).send(err);
     }
 
