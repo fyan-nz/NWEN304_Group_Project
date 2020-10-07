@@ -48,7 +48,7 @@ router.post('/login', async (req, res) => {
     try {
         //Compares the password sent through the network(that is then run thought the hashing algo) with the stored hased pass if they are the same send 200 OK
         //if Password doesn't match send a 401 error
-        if (user==undefined) {
+        if (!user) {
             // console.log("inside try","user===undefined?",user===undefined)
             // console.log("inside try","user==undefined?",user==undefined)
             // console.log("inside try","triggered")
