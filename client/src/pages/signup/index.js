@@ -8,7 +8,6 @@ import { Form, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 
-//ToDo: when an email already exists, display some messages that says its already in use.
 
 class Signup extends Component {
 
