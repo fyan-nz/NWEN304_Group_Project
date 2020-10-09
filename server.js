@@ -22,12 +22,12 @@ mongoose.connection.once(('open'), () => {
 const ProductQueries = require('./res/dbQueries/products');
 const bodyParser = require('body-parser');
 
-app.get('/', (req, res) => {
-  const test = [
-    { id: 1, name: 'meme' },
-    { id: 3, name: 'second thing ' }
-  ]
-  res.json(test);
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/views'));
+
+app.get('/ejs/', async (req, res) => {
+  const products = await ProductQueries.getRandomProducts(10);
+  res.render('index', { products });
 })
 app.get('/api/products', async (req, res) => {
   const products = await ProductQueries.getRandomProducts(10);

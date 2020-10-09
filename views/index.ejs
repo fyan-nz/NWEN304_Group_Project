@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NWEN 304 Project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <link rel='stylesheet' href='./styles/index.css'>
+    <link rel='stylesheet' href='./styles/home.css'>
+    <link rel='stylesheet' href='./styles/gridItem.css'>
+</head>
+
+<body>
+
+    <%- include('./components/navbar'); %>
+
+    <!-- page header -->
+    <header class='page-header home-header'>
+        <div class='content'>
+            <h4>New realeases</h4>
+            <p class='mt-3'>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam tenetur dolores
+                sapiente est iste necessitatibus.
+            </p>
+
+            <button type="button" class='btn btn-outline-light mt-3' variant='outline-light'
+                onClick='scrollToMainContent()'>
+                Browse
+            </button>
+        </div>
+    </header>
+
+    <h4 class='mt-5 mb-3 ml-3'>
+        New Arrivals
+    </h4>
+    <!-- Slider main container -->
+    <div class="swiper-container mb-5">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+
+            <!-- Slides -->
+            <% products.forEach(product => {  %>
+            <div class="swiper-slide">
+                <div class="card grid-item-container h-100">
+                    <img class="card-img-top" src=<%= product.images[0] %> alt=<%= product.title %> />
+                    <div class="card-body">
+                    <p class="card-title title"><%= product.productInfo.title %></p>
+                    <p class="card-text">
+                        $<%= product.productInfo.price %>
+                    </p>
+                    <button class="btn btn-primary" onClick="addItemToCart('<%= product._id %>')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+        <% }); %>
+        </div>
+
+    <!-- navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    </div>
+
+
+    <!-- grid view of  product categories -->
+            <h4 class='mb-3 ml-3'>
+                Categories
+            </h4>
+
+            <div class='container-fluid home-grid'>
+                <div class='row'>
+                    <div class='col'>
+                        <a class='row img-container half-height tshirts-row' href='/ejs/products/t-shirts'>
+                            <h4>T-shirts</h4>
+                        </a>
+                        
+                        <a class='row img-container half-height pants-row' href='/ejs/products/pants'>
+                            <h4>Pants</h4>
+                        </a>
+                    </div>
+
+                    <div class='col'>
+                        <a class='row img-container full-height hoodie-row' href='/ejs/products/hoodies'>
+                            <h4>Hoodies</h4>
+                        </a>
+                    </div>
+
+                    <div class='col'>
+                        <a class='row img-container half-height accessories-row' href='/ejs/products/accessories'>
+                            <h4>Accessories</h4>
+                        </a>
+                        <a class='row img-container half-height suit-row' href='/ejs/products/suits'>
+                            <h4>Suits</h4>
+                        </a>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <a class='col img-container half-height socks-col' href='/ejs/products/socks'>
+                        <h4>Socks</h4>
+                    </a>
+
+                    <a class='col img-container half-height underwear-col' href='/ejs/products/underwear'>
+                        <h4>Underwear</h4>
+                    </a>
+                </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+     <script src = "https://unpkg.com/swiper/swiper-bundle.js" >
+    </script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="./scripts/home.js"></script>
+</body>
+
+</html>

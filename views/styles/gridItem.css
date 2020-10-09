@@ -1,0 +1,12 @@
+.grid-item-container {
+    text-align: center;
+    height: auto;
+}
+
+.grid-item-container .title {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.9rem;
+}
