@@ -25,9 +25,20 @@ const bodyParser = require('body-parser');
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/views'));
 
-app.get('/ejs/', async (req, res) => {
+app.get('/', async (req, res) => {
   const products = await ProductQueries.getRandomProducts(10);
   res.render('index', { products });
+})
+app.get('/products/:productType', async (req, res) => {
+  let productName = req.params.productType.charAt(0).toUpperCase();
+  productName += req.params.productType.slice(1).toLowerCase();
+  const products = await ProductQueries.getProductsByType(productName);
+
+  if (products.length > 0) {
+    res.render('products', { productType: productName, products });
+  } else {
+    res.json('no products were found');
+  }
 })
 app.get('/api/products', async (req, res) => {
   const products = await ProductQueries.getRandomProducts(10);

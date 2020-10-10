@@ -29,6 +29,13 @@ class ProductQueries {
         }
     }
 
+    async getProductsByType(type) {
+        if (type === 'Suits') {
+            return await this.getAllSuits();
+        }
+        return await Product.find({ productType: type });
+    }
+
     async getAllTShirts() {
         return await Product.find({ productType: 'T-shirts' });
     }
