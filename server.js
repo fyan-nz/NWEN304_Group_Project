@@ -40,6 +40,15 @@ app.get('/products/:productType', async (req, res) => {
     res.json('no products were found');
   }
 })
+app.get('/cart', (req, res) => {
+  res.render('cart', { items: [] });
+})
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+app.get('/signup', (req, res) => {
+  res.render('signup');
+})
 app.get('/api/products', async (req, res) => {
   const products = await ProductQueries.getRandomProducts(10);
   res.json(products);
