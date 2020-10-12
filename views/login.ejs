@@ -11,6 +11,7 @@
     <link rel='stylesheet' href='./styles/index.css'>
 </head>
 <body>
+
     <%- include('./components/navbar'); %>
 
     <form class="login-form-container">
@@ -24,15 +25,17 @@
         </div>
         <button type="submit" class="btn-block btn-primary">Submit</button>
 
-        <div class="mt-3 w-100 d-flex justify-content-center">
+        <a href="/auth/google" class="mt-3 w-100 d-flex justify-content-center">
             <img src="./assets/googleSignInButton.png" class="btn" alt="Google Login" />
-        </div>
+        </a>
 
-        <div className='form-group mt-4'>
+        <div class='form-group mt-4'>
             <p class="form-text">
                 Need an account? <a href='/signup'>Sign up</a>
             </p>
         </div>
       </form>
+
+      <script src="./scripts/login.js"></script>
 </body>
 </html>

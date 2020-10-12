@@ -31,37 +31,9 @@ class ProductQueries {
 
     async getProductsByType(type) {
         if (type === 'Suits') {
-            return await this.getAllSuits();
+            type = 'Suits & Blazers';
         }
         return await Product.find({ productType: type });
-    }
-
-    async getAllTShirts() {
-        return await Product.find({ productType: 'T-shirts' });
-    }
-
-    async getAllPants() {
-        return await Product.find({ productType: 'Pants' });
-    }
-
-    async getAllHoodies() {
-        return await Product.find({ productType: 'Hoodies' });
-    }
-
-    async getAllSuits() {
-        return await Product.find({ productType: 'Suits & Blazers' });
-    }
-
-    async getAllUnderwear() {
-        return await Product.find({ productType: 'Underwear' });
-    }
-
-    async getAllSocks() {
-        return await Product.find({ productType: 'Socks' });
-    }
-
-    async getAllAccessories() {
-        return await Product.find({ productType: 'Accessories' });
     }
 }
 
