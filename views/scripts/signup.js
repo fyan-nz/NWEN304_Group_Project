@@ -1,5 +1,5 @@
-const loginForm = document.getElementById('loginForm');
-loginForm.addEventListener('submit', (e) => {
+const signupForm = document.getElementById('signupForm');
+signupForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = document.getElementById('emailInput').value;
     const password = document.getElementById('passwordInput').value;
@@ -9,7 +9,7 @@ loginForm.addEventListener('submit', (e) => {
         return;
     }
 
-    fetch("http://localhost:5000/api/login", {
+    fetch("http://localhost:5000/api/register", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

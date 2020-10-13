@@ -2,12 +2,9 @@ const express = require('express');
 const app = express();
 //Allows express to read json data
 app.use(express.json())
-const authRoute = require('./client/src/auth')
 // allows cross origin resource sharing
 const cors = require('cors');
 app.use(cors());
-//any route coming from auth adds /api to the front 
-app.use('/api', authRoute);
 
 // setup passport
 const passport = require('passport');
@@ -30,6 +27,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   secret: 'SECRET',
+  rolling: true,
   cookie: {
     // the cookie expires after 1 hour
     maxAge: 1 * 60 * 60 * 1000
@@ -44,7 +42,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/views'));
 
 const serviceRoutes = require('./res/routes/service/app');
-const api = require('./res/routes/api/products');
+const api = require('./res/routes/api/index');
 
 // web service routes
 app.use('/', serviceRoutes);
