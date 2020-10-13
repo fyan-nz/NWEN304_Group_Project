@@ -30,7 +30,6 @@ signupForm.addEventListener('submit', (e) => {
                     alert(message);
                 }
                 if (response.status === 200) {
-                    //ToDo: On a 200 OK response the page should be redirected to Home
                     location.assign('/');
                 }
             })

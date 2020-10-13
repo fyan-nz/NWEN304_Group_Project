@@ -21,16 +21,19 @@ loginForm.addEventListener('submit', (e) => {
 
     })//if the server sends back a 401 error that means the password does not match
         .then(function (response) {
-            if (response.status === 401) {
-                alert("email or password is incorrect")
-            }
-            if (response.status === 200) {
-                console.log("logged in successfully")
-                //ToDo: On a 200 OK response the page should be redirected to Home 
-                location.assign('/');
-            }
-            else {
-                console.log("error")
-            }
+            let message;
+            response.json().then(json => {
+                console.log(response.status, json.message)
+                message = json.message;
+            }).then(() => {
+                if (response.status === 401) {
+                    alert(message)
+                }
+                if (response.status === 200) {
+                    // console.log(message)
+                    location.assign('/');
+                }
+            })
+
         });
 })

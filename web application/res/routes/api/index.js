@@ -97,11 +97,11 @@ router.post('/login', async (req, res) => {
                     id: user._id,
                     jwt: user.jwt
                 };
-                res.status(200).send("login successful");
+                res.status(200).json({message:"login successful"})
                 console.log('logged in')
             } else {
                 console.log("password doesn't match");
-                res.status(401).send("password doesn't match")
+                res.status(401).json({message: "password doesn't match"});
             }
 
             //any other errors are caught and a 400 error is sent
