@@ -57,7 +57,7 @@ router.post('/register', async (req, res) => {
     try {
         //check if email exist
         if (email_exist) {
-            res.status(401).send("email already registered");
+            res.status(401).json({ message:"Email address exist"})
         } else {
             //saves newly created user to the database using the email provided and the hashed password
             const savedUser = await user.save();
@@ -65,7 +65,7 @@ router.post('/register', async (req, res) => {
                 id: savedUser._id,
                 jwt: savedUser.jwt,
             };
-            res.status(200).send("registration successful");
+            res.status(200).json({message: "registration successful"})
         }
     } catch
     (err) {
