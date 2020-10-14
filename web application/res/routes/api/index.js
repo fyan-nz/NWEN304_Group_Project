@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt');
 const { response } = require('express');
 const User = require('../../models/User');
 
+
 // products api endpoints
 router.get('/products', async (req, res) => {
     const products = await ProductQueries.getRandomProducts(10);
@@ -78,7 +79,8 @@ router.post('/login', async (req, res) => {
 
     //Checks to see if the user is in the database by checking against the list with their email
     var user = await User.findOne({ email: req.body.email });
-
+   
+        
 
     try {
         //Compares the password sent through the network(that is then run thought the hashing algo) with the stored hased pass if they are the same send 200 OK
