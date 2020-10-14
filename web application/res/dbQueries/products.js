@@ -35,6 +35,9 @@ class ProductQueries {
         }
         return await Product.find({ productType: type });
     }
+    async getAll(){
+        return await Product.all();
+    }
 }
 
 module.exports = new ProductQueries();

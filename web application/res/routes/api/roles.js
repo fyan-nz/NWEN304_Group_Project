@@ -15,7 +15,10 @@ function userLogin(req, res, next) {
 function authRole(role) {
 
     return async (req, res, next) => {
-        const user = await User.findOne({ jwt: req.session.user.jwt })
+        if (!req.session.user) {
+            return res.redirect('/');
+        }
+        const user = await User.findOne({ jwt: req.session.user.jwt });
         if (user.role !== role && user.role !== 'admin') {
             return res.redirect('/');
         }

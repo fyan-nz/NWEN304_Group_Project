@@ -6,11 +6,11 @@ const router = require('express').Router();
 const ProductQueries = require('../../dbQueries/products');
 const User = require('../../models/User')
 //middleware that checks if user is logged in or if they are admin
-const { authRole, userLogin } = require('../api/roles')
+const {authRole, userLogin} = require('../api/roles')
 // web service routes
 router.get('/', async (req, res) => {
     const products = await ProductQueries.getRandomProducts(10);
-    res.render('index', { products, user: req.user || req.session.user });
+    res.render('index', {products, user: req.user || req.session.user});
 })
 
 router.get('/products/:productType', async (req, res) => {
@@ -20,14 +20,14 @@ router.get('/products/:productType', async (req, res) => {
     const products = await ProductQueries.getProductsByType(productName);
 
     if (products.length > 0) {
-        res.render('products', { productType: productName, products, user: req.user || req.session.user });
+        res.render('products', {productType: productName, products, user: req.user || req.session.user});
     } else {
         res.json('no products were found');
     }
 })
 router.get('/cart', userLogin, (req, res) => {
 
-    res.render('cart', { items: [], user: req.user || req.session.user });
+    res.render('cart', {items: [], user: req.user || req.session.user});
 })
 
 // authentication routes
@@ -35,7 +35,7 @@ router.get('/login', (req, res) => {
     if (req.user || (req.session && req.session.user)) {
         res.redirect('/');
     } else {
-        res.render('login', { user: null });
+        res.render('login', {user: null});
     }
 });
 
@@ -43,7 +43,7 @@ router.get('/signup', (req, res) => {
     if (req.user || (req.session && req.session.user)) {
         res.redirect('/');
     } else {
-        res.render('signup', { user: null });
+        res.render('signup', {user: null});
     }
 });
 
@@ -59,7 +59,8 @@ it sends them a response saying they aren't an authed user
 if the are then the code sends authe worked 
  */
 router.get('/test', authRole('admin'), async (req, res) => {
-    res.send("auth worked")
+    ProductQueries.getRandomProducts(5).then(results => {
+        res.json(results);})
     console.log("auth worked");
 
 })
@@ -69,10 +70,10 @@ router.get('/test', authRole('admin'), async (req, res) => {
 const passport = require('passport');
 
 router.get('/auth/google',
-    passport.authenticate('google', { scope: ['profile', 'email'] }));
+    passport.authenticate('google', {scope: ['profile', 'email']}));
 
 router.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/login' }),
+    passport.authenticate('google', {failureRedirect: '/login'}),
     (req, res) => {
         // Successful authentication, redirect.
         res.redirect('/');
