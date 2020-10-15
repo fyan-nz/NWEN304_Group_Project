@@ -35,11 +35,15 @@
                         $<%= item.productInfo.price %>
                     </div>
                 </div>
-
+                <div class='id'>
+                    <label id='label-id'><%= item.id %></label>
+                </div>
                 <div class="col-1 ml-auto">
-                    //TODO: should have a function to delete this item
-                    <button class='btn btn-primary ml-5 mb-5'>
+                    <button class='btn btn-primary ml-5 button-delete'>
                         Delete
+                    </button>
+                    <button class='btn btn-primary ml-5 button-update'>
+                        Update
                     </button>
                 </div>
             </div>
@@ -48,6 +52,6 @@
 
 <% } %>
 
-
+<script src="./scripts/admin.js"></script>
 </body>
 </html>

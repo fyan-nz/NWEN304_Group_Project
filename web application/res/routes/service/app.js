@@ -61,12 +61,21 @@ if the are then the code sends authe worked
 router.get('/test', authRole('admin'), async (req, res) => {
     ProductQueries.getRandomProducts(5).then(results => {
         //TODO: should send all data to admin page
-        res.render('admin', {items: results,user: req.user || req.session.user})
+        res.render('admin', {items: results, user: req.user || req.session.user})
     })
     console.log("auth worked");
-
 })
-
+router.get('/admin', async (req, res) => {
+    ProductQueries.getRandomProducts(5).then(results => {
+        //TODO: should send all data to admin page
+        res.render('admin', {items: results, user: req.user || req.session.user})
+    })
+    console.log("auth worked");
+})
+router.delete('/admin/remove-item', async (req, res) => {
+    console.log(req.query)
+    res.json({req: req.query})
+})
 
 // OAuth2 routes
 const passport = require('passport');
