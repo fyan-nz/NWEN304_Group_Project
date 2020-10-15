@@ -11,7 +11,9 @@ deleteButtons.forEach(b => {
 })
 
 function delItem(b) {
-    console.log(b.parentElement.parentElement.querySelector("#label-id").innerText);//get the id
+    let id = b.parentElement.parentElement.querySelector("#label-id").innerText;//get the id
+    fetch('/admin/remove-item?id='+id, {method: 'delete'}).then(res => {res.json().then(json => {
+        console.log(json)})})
 }
 
 function updateItem(b) {

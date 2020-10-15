@@ -76,6 +76,10 @@ router.delete('/admin/remove-item', async (req, res) => {
     console.log(req.query)
     res.json({req: req.query})
 })
+router.delete('/admin/remove-item-need-auth',authRole('admin'), async (req, res) => {
+    console.log(req.query)
+    res.json({req: req.query})
+})
 
 // OAuth2 routes
 const passport = require('passport');
