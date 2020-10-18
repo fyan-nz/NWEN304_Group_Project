@@ -17,7 +17,7 @@ class ProductQueries {
 
     /**
      * shuffles an array.
-     * 
+     *
      * @param arr the array of elements that we want to shuffle
      */
     shuffle(arr) {
@@ -36,8 +36,13 @@ class ProductQueries {
         return await Product.find({ productType: type });
     }
     async getAll(){
-        return await Product.all();
+        return await Product.find();
     }
+
+    async deleteProduct(id) {
+        return await Product.deleteOne({_id: id})
+    }
+
 }
 
 module.exports = new ProductQueries();

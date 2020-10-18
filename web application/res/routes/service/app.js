@@ -66,20 +66,19 @@ router.get('/test', authRole('admin'), async (req, res) => {
     console.log("auth worked");
 })
 router.get('/admin', async (req, res) => {
-    ProductQueries.getRandomProducts(5).then(results => {
-        //TODO: should send all data to admin page
+    ProductQueries.getAll().then(results => {
         res.render('admin', {items: results, user: req.user || req.session.user})
     })
     console.log("auth worked");
 })
 router.delete('/admin/remove-item', async (req, res) => {
-    console.log(req.query)
-    res.json({req: req.query})
+    console.log(req.query.id)
+    ProductQueries.deleteProduct(req.query.id).then(results => res.json({result:results}))
 })
-router.delete('/admin/remove-item-need-auth',authRole('admin'), async (req, res) => {
-    console.log(req.query)
-    res.json({req: req.query})
-})
+// router.delete('/admin/remove-item-need-auth',authRole('admin'), async (req, res) => {
+//     console.log(req.query.id)
+//     // res.json({id: req.query.id})
+// })
 
 // OAuth2 routes
 const passport = require('passport');

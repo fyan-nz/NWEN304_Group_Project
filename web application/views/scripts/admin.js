@@ -7,13 +7,21 @@ updateButtons.forEach(b => {
 })
 const deleteButtons = document.querySelectorAll(".button-delete");
 deleteButtons.forEach(b => {
-    b.addEventListener('click', () => delItem(b))
+    b.addEventListener('click', () => delButtonClicked(b))
 })
 
-function delItem(b) {
+function delButtonClicked(b) {
     let id = b.parentElement.parentElement.querySelector("#label-id").innerText;//get the id
-    fetch('/admin/remove-item?id='+id, {method: 'delete'}).then(res => {res.json().then(json => {
-        console.log(json)})})
+    if (confirm("Are you sure you want to delete item " + id+" ?")) {
+        fetch('/admin/remove-item?id=' + id, {method: 'delete'}).then(res => {
+            res.json().then(json => {
+                alert(json.result.deletedCount+" item(s) has been deleted.")
+                // location.reload();
+                //or update the dom
+                b.parentElement.parentElement.parentElement.parentElement.remove();
+            })
+        });
+    }
 }
 
 function updateItem(b) {
