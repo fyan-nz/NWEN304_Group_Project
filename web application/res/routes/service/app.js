@@ -65,17 +65,17 @@ router.get('/test', authRole('admin'), async (req, res) => {
     })
     console.log("auth worked");
 })
-router.get('/admin', async (req, res) => {
+router.get('/admin', authRole('admin'),async (req, res) => {
     ProductQueries.getAll().then(results => {
         res.render('admin', {items: results, user: req.user || req.session.user})
     })
     console.log("auth worked");
 })
-router.delete('/admin/remove-item', async (req, res) => {
+router.delete('/admin/remove-item',authRole('admin'), async (req, res) => {
     console.log(req.query.id)
     ProductQueries.deleteProduct(req.query.id).then(results => res.json({result: results}))
 })
-router.post('/admin/add-item', async (req, res) => {
+router.post('/admin/add-item',authRole('admin'), async (req, res) => {
     // console.log(req.body.name)
     let j = req.body
     //{ name: '1', price: '2', type: 'T-shirts', desc: '3', image: '4' }

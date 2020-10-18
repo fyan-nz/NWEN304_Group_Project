@@ -21,6 +21,7 @@ submitButton.addEventListener('click', () => {
             console.log('Success:', response);
             alert(response.message)
             clearForm();
+            location.reload();
         });
 })
 updateButtons.forEach(b => {
