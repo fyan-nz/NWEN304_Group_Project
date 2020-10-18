@@ -4,6 +4,7 @@
 
 const router = require('express').Router();
 const ProductQueries = require('../../dbQueries/products');
+const ProductSchema = require('../../models/productModle');
 const User = require('../../models/User')
 //middleware that checks if user is logged in or if they are admin
 const {authRole, userLogin} = require('../api/roles')
@@ -59,8 +60,7 @@ it sends them a response saying they aren't an authed user
 if the are then the code sends authe worked 
  */
 router.get('/test', authRole('admin'), async (req, res) => {
-    ProductQueries.getRandomProducts(5).then(results => {
-        //TODO: should send all data to admin page
+    ProductQueries.getAll().then(results => {
         res.render('admin', {items: results, user: req.user || req.session.user})
     })
     console.log("auth worked");
@@ -73,7 +73,20 @@ router.get('/admin', async (req, res) => {
 })
 router.delete('/admin/remove-item', async (req, res) => {
     console.log(req.query.id)
-    ProductQueries.deleteProduct(req.query.id).then(results => res.json({result:results}))
+    ProductQueries.deleteProduct(req.query.id).then(results => res.json({result: results}))
+})
+router.post('/admin/add-item', async (req, res) => {
+    // console.log(req.body.name)
+    let j = req.body
+    //{ name: '1', price: '2', type: 'T-shirts', desc: '3', image: '4' }
+    new ProductSchema({
+        productInfo: {
+            title: j.name, price: j.price, description: j.desc
+        },
+        images: j.image,
+        productType: j.type
+    }).save();
+    res.status(201).json({message: 'Product added'})
 })
 // router.delete('/admin/remove-item-need-auth',authRole('admin'), async (req, res) => {
 //     console.log(req.query.id)

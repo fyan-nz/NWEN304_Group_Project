@@ -43,6 +43,10 @@ class ProductQueries {
         return await Product.deleteOne({_id: id})
     }
 
+    async addProduct(product) {
+        Product.insertOne(product);
+    }
+
 }
 
 module.exports = new ProductQueries();
