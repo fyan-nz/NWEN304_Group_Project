@@ -1,5 +1,6 @@
 const updateButtons = document.querySelectorAll(".button-update");
 const submitButton = document.querySelector("#add-product");
+const newProductForm = document.querySelectorAll(".product-input");
 
 submitButton.addEventListener('click', () => {
     let productName = document.querySelector("#product-name").value;
@@ -7,7 +8,7 @@ submitButton.addEventListener('click', () => {
     let productType = document.querySelector("#product-type").value;
     let productDescription = document.querySelector("#product-description").value;
     let productImage = document.querySelector("#product-image").value;
-    let p={name:productName,price:productPrice,type:productType,desc:productDescription,image:productImage}
+    let p = {name: productName, price: productPrice, type: productType, desc: productDescription, image: productImage}
     fetch('/admin/add-item', {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(p), // data can be `string` or {object}!
@@ -19,7 +20,7 @@ submitButton.addEventListener('click', () => {
         .then(response => {
             console.log('Success:', response);
             alert(response.message)
-        //    TODO:clear form after successful add
+            clearForm();
         });
 })
 updateButtons.forEach(b => {
@@ -50,6 +51,9 @@ function updateItem(b) {
     console.log(b.parentElement.parentElement.querySelector("#label-id").innerText);//get the id
     alert("TODO: do update")
 }
-function clearForm(){
 
+function clearForm() {
+    newProductForm.forEach(f => {
+        f.value = "";
+    })
 }
