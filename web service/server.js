@@ -41,7 +41,7 @@ app.use('/api', api);
 // cart api
 app.use('/cart', cartApi);
 
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
   {
     console.log("Listening");
   }
