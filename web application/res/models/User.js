@@ -6,8 +6,8 @@ const schema = new Schema({
     password: { type: String, required: true },
     jwt: { type: String, required: true },
     cart: { type: Array, default: [] },
-    role: {type: String, default: 'user' }
-
+    role: { type: String, default: 'user' },
+    purchases: { type: Array, default: [] }
 });
 
 module.exports = mongoose.model('User', schema);

@@ -51,4 +51,22 @@ router.post('/remove', async (req, res) => {
     }
 });
 
+// complete purchase
+router.post('/purchase', async (req, res) => {
+    const userInfo = req.user || req.session.user;
+
+    // check if the user is logged in
+    if (!userInfo) {
+        res.status(401).send('you need to login before adding items to the cart');
+        return;
+    }
+
+    try {
+        await CartQueries.completePurchase(userInfo.id, userInfo.jwt);
+        res.status(200).send('purchase complete');
+    } catch (err) {
+        res.status(500).send('something went wrong');
+    }
+});
+
 module.exports = router;

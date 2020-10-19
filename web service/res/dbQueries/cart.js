@@ -30,6 +30,18 @@ class CartQueries {
         await user.save();
     }
 
+    async completePurchase(userId, jwt) {
+        const user = await UserQueries.getUserByIdAndType(userId, jwt);
+        if (user.cart.length === 0) {
+            throw new Error('cart is empty');
+        }
+
+        // add cart items to the user's purchases list and reset the cart
+        user.purchases.push(...user.cart);
+        user.cart = [];
+        await user.save();
+    }
+
     async getUsersCart(userId, jwt) {
         const user = await UserQueries.getUserByIdAndType(userId, jwt);
         if (user.cart.length > 0) {
