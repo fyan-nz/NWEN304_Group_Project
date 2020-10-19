@@ -15,10 +15,12 @@ passport.deserializeUser(async (userInfo, done) => {
 
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+const PORT = process.env.PORT || 5000;
+
 passport.use(new GoogleStrategy({
     clientID: '571513238390-v4v9lkk9u3n5ul535i8jmjsrodee9h2t.apps.googleusercontent.com',
     clientSecret: 'pHj_HrL3pNmH9COaZo1ik_P2',
-    callbackURL: "http://localhost:5000/auth/google/callback"
+    callbackURL: `http://localhost:${PORT}/auth/google/callback`
 },
     async (accessToken, refreshToken, profile, done) => {
         const user = await GoogleUser.findOne({ googleId: profile.id });
