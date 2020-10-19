@@ -43,12 +43,16 @@ app.use(express.static(__dirname + '/views'));
 
 const serviceRoutes = require('./res/routes/service/app');
 const api = require('./res/routes/api/index');
+const cartApi = require('./res/routes/api/cart');
 
 // web service routes
 app.use('/', serviceRoutes);
 
 // api routes
 app.use('/api', api);
+
+// cart api routes
+app.use('/cart', cartApi);
 
 app.listen(5000, () => {
   {

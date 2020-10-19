@@ -35,14 +35,37 @@ class ProductQueries {
         }
         return await Product.find({ productType: type });
     }
-    async getAll(){
+
+    async getAll() {
         return await Product.find();
     }
 
     async deleteProduct(id) {
-        return await Product.deleteOne({_id: id})
+        return await Product.deleteOne({ _id: id })
     }
 
+    async getProductById(productId) {
+        // check if the product exists
+        const product = await Product.findById(productId);
+        if (!product) {
+            throw new Error('no product found with the given id');
+        }
+        return product;
+    }
+
+    async getProductsByIds(productIds) {
+        const products = Product.find({
+            _id: {
+                $in: productIds
+            }
+        });
+
+        if (!products) {
+            throw new Error('no products were found');
+        }
+
+        return products;
+    }
 }
 
 module.exports = new ProductQueries();

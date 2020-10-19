@@ -6,6 +6,7 @@ const ProductQueries = require('../../dbQueries/products');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../../models/User');
+const CartQueries = require('../../dbQueries/cart');
 
 // products api endpoints
 router.get('/products/:productType', async (req, res) => {
@@ -20,12 +21,12 @@ router.get('/products/:productType', async (req, res) => {
     }
 });
 
-router.get('/cart', (req, res) => {
-    const test = [
-        { id: 2, name: 'test' }
-    ]
-    res.json(test);
-});
+router.get('/cart', async (req, res) => {
+    const userInfo = req.session.user;
+    const items = await CartQueries.getUsersCart(userInfo.id, userInfo.jwt);
+
+    res.json(items);
+})
 
 
 // auth api endpoints

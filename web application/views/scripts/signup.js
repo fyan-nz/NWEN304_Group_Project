@@ -9,7 +9,7 @@ signupForm.addEventListener('submit', (e) => {
         return;
     }
 
-    fetch("http://localhost:5000/api/register", {
+    fetch("/api/register", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ signupForm.addEventListener('submit', (e) => {
         body: JSON.stringify({
             email,
             password
-           
+
         }),
 
     })//if the server sends back a 401 error that means the password does not match

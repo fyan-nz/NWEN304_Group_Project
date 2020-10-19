@@ -9,7 +9,7 @@ loginForm.addEventListener('submit', (e) => {
         return;
     }
 
-    fetch("http://localhost:5000/api/login", {
+    fetch("/api/login", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

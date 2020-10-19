@@ -5,7 +5,7 @@ const router = require('express').Router();
 const ProductQueries = require('../../dbQueries/products');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const {response} = require('express');
+const { response } = require('express');
 const User = require('../../models/User');
 
 
@@ -27,18 +27,11 @@ router.get('/:productType', async (req, res) => {
     }
 });
 
-router.get('/cart', (req, res) => {
-    const test = [
-        {id: 2, name: 'test'}
-    ]
-    res.json(test);
-});
-
 
 // auth api endpoints
 //POST Route for registration
 router.post('/register', async (req, res) => {
-    let email_exist = await User.findOne({email: req.body.email}, function (error, c) {
+    let email_exist = await User.findOne({ email: req.body.email }, function (error, c) {
         if (error) {
             console.log(error);
         }
@@ -58,7 +51,7 @@ router.post('/register', async (req, res) => {
     try {
         //check if email exist
         if (email_exist) {
-            res.status(401).json({message: "Email address exist"})
+            res.status(401).json({ message: "Email address exist" })
         } else {
             //saves newly created user to the database using the email provided and the hashed password
             const savedUser = await user.save();
@@ -66,10 +59,10 @@ router.post('/register', async (req, res) => {
                 id: savedUser._id,
                 jwt: savedUser.jwt,
             };
-            res.status(200).json({message: "registration successful"})
+            res.status(200).json({ message: "registration successful" })
         }
     } catch
-        (err) {
+    (err) {
         res.status(400).send(err);
     }
 });
@@ -78,7 +71,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
 
     //Checks to see if the user is in the database by checking against the list with their email
-    var user = await User.findOne({email: req.body.email});
+    var user = await User.findOne({ email: req.body.email });
 
 
     try {
@@ -98,11 +91,11 @@ router.post('/login', async (req, res) => {
                     id: user._id,
                     jwt: user.jwt
                 };
-                res.status(200).json({message: "login successful"})
+                res.status(200).json({ message: "login successful" })
                 console.log('logged in')
             } else {
                 console.log("password doesn't match");
-                res.status(401).json({message: "password doesn't match"});
+                res.status(401).json({ message: "password doesn't match" });
             }
 
             //any other errors are caught and a 400 error is sent

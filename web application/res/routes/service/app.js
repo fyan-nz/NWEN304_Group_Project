@@ -6,11 +6,14 @@ const router = require('express').Router();
 const ProductQueries = require('../../dbQueries/products');
 const User = require('../../models/User')
 //middleware that checks if user is logged in or if they are admin
-const {authRole, userLogin} = require('../api/roles')
+const { authRole, userLogin } = require('../api/roles')
+
+const CartQueries = require('../../dbQueries/cart');
+
 // web service routes
 router.get('/', async (req, res) => {
     const products = await ProductQueries.getRandomProducts(10);
-    res.render('index', {products, user: req.user || req.session.user});
+    res.render('index', { products, user: req.user || req.session.user });
 })
 
 router.get('/products/:productType', async (req, res) => {
@@ -20,14 +23,19 @@ router.get('/products/:productType', async (req, res) => {
     const products = await ProductQueries.getProductsByType(productName);
 
     if (products.length > 0) {
-        res.render('products', {productType: productName, products, user: req.user || req.session.user});
+        res.render('products', { productType: productName, products, user: req.user || req.session.user });
     } else {
         res.json('no products were found');
     }
 })
-router.get('/cart', userLogin, (req, res) => {
 
-    res.render('cart', {items: [], user: req.user || req.session.user});
+router.get('/cart', userLogin, async (req, res) => {
+    const userInfo = req.user || req.session.user;
+    const items = await CartQueries.getUsersCart(userInfo.id, userInfo.jwt);
+
+    res.render('cart', {
+        items, user: req.user || req.session.user
+    });
 })
 
 // authentication routes
@@ -35,7 +43,7 @@ router.get('/login', (req, res) => {
     if (req.user || (req.session && req.session.user)) {
         res.redirect('/');
     } else {
-        res.render('login', {user: null});
+        res.render('login', { user: null });
     }
 });
 
@@ -43,7 +51,7 @@ router.get('/signup', (req, res) => {
     if (req.user || (req.session && req.session.user)) {
         res.redirect('/');
     } else {
-        res.render('signup', {user: null});
+        res.render('signup', { user: null });
     }
 });
 
@@ -61,19 +69,19 @@ if the are then the code sends authe worked
 router.get('/test', authRole('admin'), async (req, res) => {
     ProductQueries.getRandomProducts(5).then(results => {
         //TODO: should send all data to admin page
-        res.render('admin', {items: results, user: req.user || req.session.user})
+        res.render('admin', { items: results, user: req.user || req.session.user })
     })
     console.log("auth worked");
 })
 router.get('/admin', async (req, res) => {
     ProductQueries.getAll().then(results => {
-        res.render('admin', {items: results, user: req.user || req.session.user})
+        res.render('admin', { items: results, user: req.user || req.session.user })
     })
     console.log("auth worked");
 })
 router.delete('/admin/remove-item', async (req, res) => {
     console.log(req.query.id)
-    ProductQueries.deleteProduct(req.query.id).then(results => res.json({result:results}))
+    ProductQueries.deleteProduct(req.query.id).then(results => res.json({ result: results }))
 })
 // router.delete('/admin/remove-item-need-auth',authRole('admin'), async (req, res) => {
 //     console.log(req.query.id)
@@ -84,10 +92,10 @@ router.delete('/admin/remove-item', async (req, res) => {
 const passport = require('passport');
 
 router.get('/auth/google',
-    passport.authenticate('google', {scope: ['profile', 'email']}));
+    passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 router.get('/auth/google/callback',
-    passport.authenticate('google', {failureRedirect: '/login'}),
+    passport.authenticate('google', { failureRedirect: '/login' }),
     (req, res) => {
         // Successful authentication, redirect.
         res.redirect('/');

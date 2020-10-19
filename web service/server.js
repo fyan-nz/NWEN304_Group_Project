@@ -35,12 +35,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const serviceRoutes = require('./res/routes/service/app');
 const api = require('./res/routes/api/index');
+const cartApi = require('./res/routes/api/cart');
 
 // web service routes
 app.use('/', serviceRoutes);
 
 // api routes
 app.use('/api', api);
+
+// cart api
+app.use('/cart', cartApi);
 
 app.listen(5000, () => {
   {
