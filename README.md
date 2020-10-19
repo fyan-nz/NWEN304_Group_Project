@@ -116,7 +116,7 @@ once it has been successful deleted
 
 We have a number of different error states that we can handle
 when it comes to both login and Register  
-![Register Error 1]https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/register%201.png)  
+![Register Error 1](https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/register%201.png)  
 the first one checks for make sure what is entered is a correctly formatted email  
 ![Register Error2](https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/register%202.png)  
 the second checks the database to see if the email already exists in the database and if it does
