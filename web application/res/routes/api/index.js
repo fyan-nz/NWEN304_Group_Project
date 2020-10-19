@@ -31,6 +31,16 @@ router.get('/:productType', async (req, res) => {
 // auth api endpoints
 //POST Route for registration
 router.post('/register', async (req, res) => {
+    if (!req.body.email) {
+        res.status(400).send('email paramter is missing')
+        return;
+    }
+
+    if (!req.body.password) {
+        res.status(400).send('password paramter is missing')
+        return;
+    }
+
     let email_exist = await User.findOne({ email: req.body.email }, function (error, c) {
         if (error) {
             console.log(error);
@@ -70,6 +80,16 @@ router.post('/register', async (req, res) => {
 //POST route for Login
 router.post('/login', async (req, res) => {
 
+    if (!req.body.email) {
+        res.status(400).send('email paramter is missing')
+        return;
+    }
+
+    if (!req.body.password) {
+        res.status(400).send('password paramter is missing')
+        return;
+    }
+
     //Checks to see if the user is in the database by checking against the list with their email
     var user = await User.findOne({ email: req.body.email });
 
@@ -81,7 +101,7 @@ router.post('/login', async (req, res) => {
             // console.log("inside try","user===undefined?",user===undefined)
             // console.log("inside try","user==undefined?",user==undefined)
             // console.log("inside try","triggered")
-            console.log("password doesn't match jkjdksa");
+            console.log("password doesn't match");
             res.status(401).send("password doesn't match")
         } else {
             const response = await bcrypt.compare(req.body.password, user.password);

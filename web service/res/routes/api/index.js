@@ -34,12 +34,12 @@ router.get('/cart', async (req, res) => {
 router.post('/register', async (req, res) => {
 
     if (!req.query.email) {
-        res.json('email paramter is missing')
+        res.status(400).send('email paramter is missing')
         return;
     }
 
     if (!req.query.password) {
-        res.json('password paramter is missing')
+        res.status(400).send('password paramter is missing')
         return;
     }
 
@@ -82,12 +82,12 @@ router.post('/register', async (req, res) => {
 //POST route for Login
 router.post('/login', async (req, res) => {
     if (!req.query.email) {
-        res.json('email paramter is missing')
+        res.status(400).send('email paramter is missing')
         return;
     }
 
     if (!req.query.password) {
-        res.json('password paramter is missing')
+        res.status(400).send('password paramter is missing')
         return;
     }
 
@@ -112,7 +112,6 @@ router.post('/login', async (req, res) => {
                     jwt: user.jwt
                 };
                 res.status(200).send("login successful");
-                console.log('logged in')
             } else {
                 console.log("password doesn't match");
                 res.status(401).send("password doesn't match")

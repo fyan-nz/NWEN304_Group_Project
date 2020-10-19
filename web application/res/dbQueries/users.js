@@ -8,7 +8,7 @@ class UserQueries {
 
         // if not check if they are registered with their google account
         if (!user) {
-            user = await GoogleUser.findOne({ googleId: userId, jwt });
+            user = await GoogleUser.findOne({ _id: userId, jwt });
         }
 
         // if not throw an error

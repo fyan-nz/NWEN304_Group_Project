@@ -3,7 +3,7 @@ const User = require('../../models/User');
 
 //if user is not logged in then it will redirect them to the login screen
 function userLogin(req, res, next) {
-    if (req.session.user == null) {
+    if (!req.session.user && !req.user) {
         res.status(403)
         //return res.send('Please Sign in')
         return res.redirect('/login')
