@@ -39,7 +39,7 @@ that will keep your cart information between be login and logout.
 
 # Installation
 
-You can either visit the website : http://www.example.com to see the live version of the site
+You can either visit the website : https://nwen-304-web-app.herokuapp.com/ to see the live version of the site
 
 or you can download it and run it on your own machine
 to do this you must complete the following steps:
