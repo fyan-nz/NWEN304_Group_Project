@@ -116,28 +116,28 @@ once it has been successful deleted
 
 We have a number of different error states that we can handle
 when it comes to both login and Register  
-![Register Error 1](www.test.com)  
+![Register Error 1]https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/register%201.png)  
 the first one checks for make sure what is entered is a correctly formatted email  
-![Register Error2](www.test.com)  
-the second checks the database to see if the email already exists and if it does
-it gives an alert saying the email already exists  
-![login Error](www.test.com)  
+![Register Error2](https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/register%202.png)  
+the second checks the database to see if the email already exists in the database and if it does
+it sends an alert saying the email already exists  
+![login Error](https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/login%201.png)  
 this is the same check as before but now done on the login page  
-![login Error](www.test.com)  
+![login Error2](https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/login%202.png)  
+![login Error3](https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/login3.png)  
 if the password does not match the user then an error is sent to the console
-and we have a print on the server end that tells us as well  
-![login Error2](www.test.com)  
-![login Error3](www.test.com)  
+it will also send an alert letting the user know the password is incorrect
+![login Error4](https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/login%203.png  
 We also make it so that the fields can't be left blank and send an alert if they are
 
 ### User/Admin routes
 we have also secured all of our routes so that they are only available to
 users who have the correct permissions eg. user or admin  
-![Admin Panel](www.test.com)  
-![Admin Panel 2](www.test.com)  
+![Admin Panel](https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/Auth%20Check.png)  
+![Admin Panel 2](https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/Auth%20Check%202.png)  
 we use a custom written middle ware for our routes to check to see if the Users
 that is requesting the route has the right permissions.
 we can also just do a general check to see if the user is logged in  
-![Cart AUTH](www.test.com)  
+![Cart AUTH](https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/Cart%20Auth.png)  
 this is used for the cart. if the user is not logged in then it will redirect
 them to the login page  
