@@ -126,8 +126,8 @@ this is the same check as before but now done on the login page
 ![login Error2](https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/login%202.png)  
 ![login Error3](https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/login3.png)  
 if the password does not match the user then an error is sent to the console
-it will also send an alert letting the user know the password is incorrect
-![login Error4](https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/login%203.png  
+it will also send an alert letting the user know the password is incorrect  
+![login Error4](https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/Error%20Handling/login%203.png)
 We also make it so that the fields can't be left blank and send an alert if they are
 
 ### User/Admin routes
