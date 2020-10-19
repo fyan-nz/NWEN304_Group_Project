@@ -66,6 +66,10 @@ class ProductQueries {
 
         return products;
     }
+    async addProduct(product) {
+        Product.insertOne(product);
+    }
+
 }
 
 module.exports = new ProductQueries();
