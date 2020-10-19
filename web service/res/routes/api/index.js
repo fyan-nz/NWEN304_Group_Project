@@ -3,9 +3,6 @@
  */
 const router = require('express').Router();
 const ProductQueries = require('../../dbQueries/products');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const User = require('../../models/User');
 const CartQueries = require('../../dbQueries/cart');
 const UserQueries = require('../../dbQueries/users');
 
@@ -85,5 +82,11 @@ router.post('/login', async (req, res) => {
         }
     }
 })
+
+router.post('/logout', (req, res) => {
+    req.logout();
+    req.session.user = null;
+    res.status(200).json({ message: 'logout successful' });
+});
 
 module.exports = router;
