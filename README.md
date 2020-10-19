@@ -1,68 +1,143 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+  <h3 align="center">NWEN304 Group Project</h3>
 
-In the project directory, you can run:
 
-### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- TABLE OF CONTENTS -->
+# Table of Contents
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+* [About the Project](#about-the-project)
+* [Built With](#built-with)
+* [Installation](#installation)
+* [How to use the System](#how-to-use-the-system)
+* [Error Handling](#error-handling)
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# About The Project
+This a website created for NWEN304 as part of the Group project
+Created by
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+* Sultan Banabila
+* Fangyi Yan
+* James Hutton
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The website we created is a basic e-commerce platform that allows
+the user to shop for a number of different clothing items and add them
+to their cart and finally check out. We also have a login/logout system
+that will keep your cart information between be login and logout.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Built With
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Node.js
+* Express
+* React
+* MongoDB
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Installation
 
-## Learn More
+You can either visit the website : http://www.example.com to see the live version of the site
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+or you can download it and run it on your own machine
+to do this you must complete the following steps:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Clone the repo
+git clone https://github.com/0x01BF52/NWEN304_Group_Project.git
 
-### Code Splitting
+2. Install NPM packages
+open some sort of terminal and cd into "web application"
+run npm install to download all of the node module's that are used in the project
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+3. type npm start and go to localhost:5000 to see the webpage
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
+# How to use the System
+![Landing Page](https://github.com/0x01BF52/NWEN304_Group_Project/blob/master/Images/How%20To/Home.png)  
+when you first load up the page you will be greeted with out landing page
+on this page there are a number of things you can do.
+if you scroll down you can view a randomly selected assortment of products
+as well as find a link to each of the different Categories of products we have available    
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+![Browse/Categories](www.test.com)  
 
-### Advanced Configuration
+if we scroll back to the top we can see a number of other action we can perform
+top right of the screen we have Cart, Browse(dropdown) and login.
+Cart is only available once you have logged in so we will start there.  
+![Login](www.test.com)  
+We are then taken to the login page and are asked to either enter out login information
+or login through Google. if we enter correct information here we will be taken back to the
+Landing page but we will now be logged in. But as of now we don't have a account
+so we should click the sign up button at the bottom of the screen.  
+![Register](www.test.com)  
+once we have successful created an account we will be taken back to the landing Page
+![Logged in](www.test.com)  
+we can now see that we have been logged in, we can now add and remove items from our cart that will persist between sessions  
+![Cart](www.test.com)  
+as of how we can see that the cart is empty but when can add items to the cart either from the home page or
+from one of the dedicated category pages  
+![Add Item](www.test.com)  
+![Added](www.test.com)  
+we can now see that we have added the item to our cart and if we check the cart itself
+we can see that the items have been added   
+![CartFull](www.test.com)  
+That is all the functions that a regular user can do but we also have a role for
+admins so that they can add delete and update products in the database.  
+![Admin Login](www.test.com)  
+Admins have the same login portal as regular users and have all the same capabilities as regular users
+but can also access routes that are restricted to be admin only  
+![Admin routes](www.test.com)  
+if we go to the /admin route on our we site we find our admin panel that has functionality for
+adding and deleting products in the database.  
+![Admin Add](www.test.com)  
+the add feature always admins to easily add new products to the website without needing for it to be rewritten
+we can set the product name, its price, what category it is under, a description and a link to its photo  
+![Add confirm](www.test.com)  
+![Store Added](www.test.com)  
+As we can see the new products have been added to the page (only test ones)  
+![Admin delete](www.test.com)  
+We can also delete old product from the store if we happen to stop carrying them
+when deleting the item it isn't deleted with one click to avoid miss clicking and accidently
+deleting a product that wasn't meant to be deleted  
+![Admin delete1](www.test.com)  
+![Admin delete2](www.test.com)  
+as you can see we need to confirm that the item is deleted and we are then given conformation
+once it has been successful deleted  
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Deployment
+# Error Handling
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `yarn build` fails to minify
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Login/Register
+
+We have a number of different error states that we can handle
+when it comes to both login and Register  
+![Register Error 1](www.test.com)  
+the first one checks for make sure what is entered is a correctly formatted email  
+![Register Error2](www.test.com)  
+the second checks the database to see if the email already exists and if it does
+it gives an alert saying the email already exists  
+![login Error](www.test.com)  
+this is the same check as before but now done on the login page  
+![login Error](www.test.com)  
+if the password does not match the user then an error is sent to the console
+and we have a print on the server end that tells us as well  
+![login Error2](www.test.com)  
+![login Error3](www.test.com)  
+We also make it so that the fields can't be left blank and send an alert if they are
+
+### User/Admin routes
+we have also secured all of our routes so that they are only available to
+users who have the correct permissions eg. user or admin  
+![Admin Panel](www.test.com)  
+![Admin Panel 2](www.test.com)  
+we use a custom written middle ware for our routes to check to see if the Users
+that is requesting the route has the right permissions.
+we can also just do a general check to see if the user is logged in  
+![Cart AUTH](www.test.com)  
+this is used for the cart. if the user is not logged in then it will redirect
+them to the login page  
