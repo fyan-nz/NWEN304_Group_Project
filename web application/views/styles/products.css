@@ -19,3 +19,21 @@
 .browse-header button {
     width: 50%;
 }
+
+.add-item-notification {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 100;
+    cursor: default;
+    pointer-events: none;
+    transition: .5s;
+    opacity: 0;
+}
+
+.add-item-notification.visible {
+    opacity: 1;
+}

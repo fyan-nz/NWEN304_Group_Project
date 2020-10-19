@@ -18,7 +18,12 @@
 <body>
 
     <%- include('./components/navbar', {user: user}); %>
-<!-- page header -->
+    
+    <div class='add-item-notification'>
+        Item has been added to the cart
+    </div>
+
+    <!-- page header -->
     <header class='page-header home-header'>
         <div class='content'>
             <h4>New releases</h4>
@@ -33,10 +38,6 @@
             </button>
         </div>
     </header>
-
-    <h1>
-        <%= user %>
-        </h1>
 
     <h4 class='mt-5 mb-3 ml-3'>
         New Arrivals
