@@ -47,7 +47,7 @@ to do this you must complete the following steps:
 1. Clone the repo
 git clone https://github.com/0x01BF52/NWEN304_Group_Project.git
 
-2. Install NPM packages
+2. Install NPM packages  
 open some sort of terminal and cd into "web application"
 run npm install to download all of the node module's that are used in the project
 
