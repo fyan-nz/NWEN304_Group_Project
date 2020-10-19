@@ -3,10 +3,6 @@
  */
 const router = require('express').Router();
 const ProductQueries = require('../../dbQueries/products');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const { response } = require('express');
-const User = require('../../models/User');
 const UserQueries = require('../../dbQueries/users');
 
 // products api endpoints
@@ -48,6 +44,8 @@ router.post('/register', async (req, res) => {
     } catch (err) {
         if (err.message.includes("Email address exist")) {
             res.status(401).json({ message: "Email address exist" });
+        } else if (err.message.includes('password is too weak')) {
+            res.status(401).json({ message: "password is too weak" });
         } else {
             res.status(400).json({ message: "something went wrong" });
         }

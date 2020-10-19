@@ -28,6 +28,12 @@ class UserQueries {
                 console.log(error);
             }
         });
+
+        const passwordPattern = RegExp('[A-Z]+[a-z]+[0-9]+');
+        if (password.length < 6 || !passwordPattern.test(password)) {
+            throw new Error('password is too weak');
+        }
+
         //creates a random salt that is used by bcrypt to hash the password
         const salt = await bcrypt.genSalt();
         //creates a hashed password from the password and the salt
