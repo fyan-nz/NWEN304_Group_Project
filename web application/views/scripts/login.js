@@ -23,16 +23,14 @@ loginForm.addEventListener('submit', (e) => {
         .then(function (response) {
             let message;
             response.json().then(json => {
-                console.log(response.status, json.message)
                 message = json.message;
             }).then(() => {
-                if (response.status === 401) {
+                if (response.status === 200) {
+                    location.assign('/');
+                } else {
                     alert(message)
                 }
-                if (response.status === 200) {
-                    // console.log(message)
-                    location.assign('/');
-                }
+
             })
 
         });

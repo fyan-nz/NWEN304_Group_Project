@@ -22,12 +22,7 @@ const session = require('express-session');
 app.use(session({
   resave: false,
   saveUninitialized: true,
-  secret: 'SECRET',
-  rolling: true,
-  cookie: {
-    // the cookie expires after 1 hour
-    maxAge: 1 * 60 * 60 * 1000
-  }
+  secret: 'SECRET'
 }));
 
 const bodyParser = require("body-parser");

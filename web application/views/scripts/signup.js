@@ -24,7 +24,6 @@ signupForm.addEventListener('submit', (e) => {
         .then(function (response) {
             let message;
             response.json().then(json => {
-                console.log(response.status, json.message)
                 message = json.message;
             }).then(() => {
                 if (response.status === 401) {
